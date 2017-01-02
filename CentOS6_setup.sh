@@ -10,13 +10,13 @@
 UpdateKernel=1			
 
 #修改主机名
-HostName='storage.i5zhen.com'
+HostName='lax.i5zhen.com'
 
 #修改密码
 PassWord='123456'
 
 #是否安装ShadowSocks
-InstallSS=0							
+InstallSS=1						
 
 #更新软件包
 function SystemUpdate()
@@ -106,6 +106,16 @@ function InstallPython27()
 	rm -rf /usr/bin/python
 	ln -s python2.7 python
 	sed -i "s|#!/usr/bin/python|#!/usr/bin/python2.6|" yum
+}
+
+#安装ShadowSocks-libev
+function InstallSSlibev()
+{
+	cd /etc/yum.repos.d
+	wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-6/librehat-shadowsocks-epel-6.repo
+	yum -y install shadowsocks-libev
+	chkconfig shadowsocks-libev on
+	
 }
 
 #脚本开始

@@ -1,4 +1,4 @@
-# Scrip-Collection
+# Script-Collection
 呉真自己编写的各种脚本
 ## CentOS6_setup.sh
 安装CentOS6后，一键修改各种配置。
@@ -11,6 +11,6 @@
 
 ##### 使用  
 ```
-    wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/CentOS6_setup.sh && chmod u+x CentOS6_setup.sh
-    ./CentOS6_setup.sh
+wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/CentOS6_setup.sh && chmod u+x CentOS6_setup.sh
+./CentOS6_setup.sh
 ```
