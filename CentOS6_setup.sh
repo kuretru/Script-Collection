@@ -3,6 +3,7 @@
 # OS Required:  CentOS6
 # Description:  呉真的服务器一键配置脚本
 # Author:       kuretru < kuretru@gmail.com >
+# Github:		https://github.com/kuretru/Script-Collection
 # Version:      1.0.161225
 #==================================================
 
@@ -16,7 +17,13 @@ HostName='lax.i5zhen.com'
 PassWord='123456'
 
 #是否安装ShadowSocks
-InstallSS=1						
+InstallSS=1
+
+#ShadowSocks密码
+SSPassword='123456'
+
+IPv4=$(wget -qO- -t1 -T2 ipv4.icanhazip.com)
+IPv6=$(wget -qO- -t1 -T2 ipv6.icanhazip.com)					
 
 #更新软件包
 function SystemUpdate()
@@ -91,9 +98,25 @@ function iptablesConfig()
 	fi
 	iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 	iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
-	iptables -A INPUT -p tcp -m tcp --dport 8099 -j ACCEPT
 	iptables -P INPUT DROP
 	service iptables save
+	if [ ! -z $"IPv6" ]; then
+		yum -y install iptables-ipv6
+        ip6tables -P INPUT DROP
+		ip6tables -F
+		ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+		ip6tables -A INPUT -p icmpv6 -j ACCEPT
+		ip6tables -A INPUT -d ::1/128 -j ACCEPT
+		ip6tables -A INPUT -p tcp -m tcp --dport 8022 -j ACCEPT
+		if [ $InstallSS -eq 1 ]; then
+			ip6tables -A INPUT -p tcp -m tcp --dport 8023 -j ACCEPT
+			ip6tables -A INPUT -p udp -m udp --dport 8023 -j ACCEPT
+		fi
+		ip6tables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+		ip6tables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+		ip6tables -P INPUT DROP
+		service ip6tables save
+    fi
 }
 
 #安装python2.7
@@ -108,6 +131,13 @@ function InstallPython27()
 	sed -i "s|#!/usr/bin/python|#!/usr/bin/python2.6|" yum
 }
 
+#下载个人配置文件
+function DownloadConfig()
+{
+	cd /root
+	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/.vimrc
+}
+
 #安装ShadowSocks-libev
 function InstallSSlibev()
 {
@@ -115,7 +145,22 @@ function InstallSSlibev()
 	wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-6/librehat-shadowsocks-epel-6.repo
 	yum -y install shadowsocks-libev
 	chkconfig shadowsocks-libev on
-	
+	#开始配置ShadowSocks
+	server_value="\"0.0.0.0\""
+    if [ ! -z $"IPv6" ]; then
+        server_value="[\"[::0]\",\"0.0.0.0\"]"
+    fi
+    cat > /etc/shadowsocks-libev/config.json<<-EOF
+{
+    "server":${server_value},
+    "server_port":8023,
+    "local_port":1080,
+    "password":"${SSPassword}",
+    "timeout":60,
+    "method":"aes-256-cfb"
+}
+EOF
+	service shadowsocks-libev restart
 }
 
 #脚本开始
@@ -176,6 +221,23 @@ cat <<EOF
 ########################################
 EOF
 	InstallPython27
+	
+	cat <<EOF
+########################################
+# 下载个人配置文件
+########################################
+EOF
+	DownloadConfig
+	
+	if [ $InstallSS -eq 1 ]; then
+		cat <<EOF
+########################################
+# 安装ShadowSocks-libev
+########################################
+EOF
+		InstallSSlibev
+	fi
+	
 else
 	echo '用户退出'
 	exit
