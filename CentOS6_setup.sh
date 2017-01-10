@@ -67,7 +67,7 @@ EOF
 #配置SSH
 function SSHConfig()
 {
-	sed -i "s/^Port.*$/Port 8022/g" /etc/ssh/sshd_config
+	sed -i "s/^#Port.*$/Port 8022/g" /etc/ssh/sshd_config
 	sed -i "s/^#LoginGraceTime/LoginGraceTime/g" /etc/ssh/sshd_config
 	sed -i "s/^#MaxAuthTries 6/MaxAuthTries 2/g" /etc/ssh/sshd_config
 	sed -i "s/^#PubkeyAuthentication/PubkeyAuthentication/g" /etc/ssh/sshd_config
