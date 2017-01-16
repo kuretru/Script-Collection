@@ -39,7 +39,7 @@ function SystemUpdate()
 #安装基本软件包
 function InstallPackages()
 {
-	yum -y install vim wget curl tree lsof ntpdate epel-release net-snmp bind-utils mtr unzip crontabs git make gcc gcc-c++
+	yum -y install vim wget curl tree lsof ntpdate vixie-cron epel-release net-snmp bind-utils mtr unzip crontabs git make gcc gcc-c++
 }
 
 #修改系统基本设置
@@ -57,6 +57,9 @@ function SystemConfig()
 	#时间相关设置
 	/bin/cp -p /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 	ntpdate time.windows.com
+	chkconfig crond on
+	echo "0 1 * * * /usr/sbin/ntpdate time.windows.com" > /var/spool/cron/root
+	service crond restart
 	#登录文本
 	cat <<EOF > /etc/motd
 警告：你的IP已被记录，所有操作将会通告管理员！
@@ -67,7 +70,7 @@ EOF
 #配置SSH
 function SSHConfig()
 {
-	sed -i "s/^#Port.*$/Port 8022/g" /etc/ssh/sshd_config
+	sed -i "s/^.?Port.*$/Port 8022/g" /etc/ssh/sshd_config
 	sed -i "s/^#LoginGraceTime/LoginGraceTime/g" /etc/ssh/sshd_config
 	sed -i "s/^#MaxAuthTries 6/MaxAuthTries 2/g" /etc/ssh/sshd_config
 	sed -i "s/^#PubkeyAuthentication/PubkeyAuthentication/g" /etc/ssh/sshd_config
