@@ -11,6 +11,6 @@
 
 ##### 使用  
 ```
-wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/CentOS6_setup.sh && chmod u+x CentOS6_setup.sh
+wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/CentOS6/CentOS6_setup.sh && chmod u+x CentOS6_setup.sh
 ./CentOS6_setup.sh
 ```

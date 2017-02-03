@@ -12,7 +12,7 @@
 function InstallNginx()
 {
 	cd /etc/yum.repos.d/
-	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/nginx.repo
+	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/files/nginx.repo
 }
 
 

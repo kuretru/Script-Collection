@@ -59,7 +59,7 @@ function Installmodssl()
 	cd ${apacheURL%.tar.gz}/modules/ssl
 	apxs -i -a -D HAVE_OPENSSL=1 -I/usr/local/openssl/include/openssl/ -L/usr/local/openssl/lib/ -c *.c -lcrypto -lssl -ldl
 	cd /etc/httpd/conf.d/
-	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/ssl.conf
+	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/files/ssl.conf
 }
 
 function InstallPHP71()
