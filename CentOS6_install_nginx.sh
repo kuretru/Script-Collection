@@ -8,7 +8,7 @@
 #==================================================
 
 
-#安装ius源
+#安装nginx
 function InstallNginx()
 {
 	cd /etc/yum.repos.d/
@@ -35,10 +35,10 @@ if [[ "$ANSWER" = 'y' ]] || [[ "$ANSWER" = 'yes' ]]; then
 	
 cat <<EOF
 ########################################
-# 安装ius源  
+# 安装nginx  
 ########################################
 EOF
-	InstallIus
+	InstallNginx
 	
 	
 else
