@@ -1,9 +1,9 @@
 #!/bin/bash
 #==================================================
-# OS Required:  CentOS6
-# Description:  呉真的服务器一键配置脚本安装nginx
+# OS Passed:    CentOS6
+# Description:  呉真的服务器一键配置脚本安装nginx，并支持HTTP/2
 # Author:       kuretru < kuretru@gmail.com >
-# Github:		https://github.com/kuretru/Script-Collection
+# Github:       https://github.com/kuretru/Script-Collection
 # Version:      1.0.170202
 #==================================================
 

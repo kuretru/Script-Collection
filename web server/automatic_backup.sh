@@ -1,10 +1,10 @@
 #!/bin/bash
 #==================================================
-# OS Required:  CentOS6
-# Description:  呉真的服务器一键配置脚本
+# OS Passed:    CentOS6
+# Description:  Web服务器自动备份脚本
 # Author:       kuretru < kuretru@gmail.com >
 # Github:       https://github.com/kuretru/Script-Collection
-# Version:      1.0.161225
+# Version:      1.0.170204
 #==================================================
 
 #是否更新内核，不更新改0
