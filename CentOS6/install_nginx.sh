@@ -5,6 +5,8 @@
 # Author:       kuretru < kuretru@gmail.com >
 # Github:       https://github.com/kuretru/Script-Collection
 # Version:      1.0.170202
+# OpenSSL:		https://www.openssl.org/source/
+# Nginx:		http://nginx.org/en/download.html
 #==================================================
 
 #OpenSSL下载地址
