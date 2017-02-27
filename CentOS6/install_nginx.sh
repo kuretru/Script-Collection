@@ -107,6 +107,7 @@ function CompileNginx()
 	cd /usr/sbin/
 	mv nginx nginx.OFF
 	ln -s /usr/local/src/${nginxURL%.tar.gz}/objs/nginx nginx
+	openssl dhparam -dsaparam -out /etc/nginx/dhparam.pem 4096
 	service nginx start
 }
 
