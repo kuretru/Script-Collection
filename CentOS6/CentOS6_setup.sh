@@ -138,7 +138,7 @@ function InstallPython27()
 function DownloadConfig()
 {
 	cd /root
-	wget https://raw.githubusercontent.com/kuretru/Scrip-Collection/master/files/.vimrc
+	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/.vimrc
 }
 
 #安装ShadowSocks-libev
