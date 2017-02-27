@@ -114,7 +114,7 @@ function CompileNginx()
 #安装PHP7.1
 function InstallPHP71()
 {
-	yum -y install php71u-cli php71u-mysqlnd php71u-json php71u-xml
+	yum -y install php71u-fpm php71u-cli php71u-mysqlnd php71u-json php71u-xml
 }
 
 
