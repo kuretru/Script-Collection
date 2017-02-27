@@ -20,6 +20,7 @@ function InstallNginx()
 {
 	cd /etc/pki/rpm-gpg/
 	wget http://nginx.org/keys/nginx_signing.key
+	rpm --import /etc/pki/rpm-gpg/nginx_signing.key
 	cd /etc/yum.repos.d/
 	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/nginx.repo
 	sed -i "s/^gpgcheck=0/gpgcheck=1/g" nginx.repo
