@@ -39,7 +39,7 @@ function SystemUpdate()
 #安装基本软件包
 function InstallPackages()
 {
-	yum -y install vim wget curl tree lsof ntpdate vixie-cron epel-release net-snmp bind-utils mtr unzip crontabs git make gcc gcc-c++
+	yum -y install vim wget curl tree lsof ntpdate postfix vixie-cron epel-release net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++
 }
 
 #修改系统基本设置
