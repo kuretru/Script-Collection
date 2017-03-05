@@ -4,7 +4,7 @@
 # Description:  呉真的服务器一键配置脚本
 # Author:       kuretru < kuretru@gmail.com >
 # Github:       https://github.com/kuretru/Script-Collection
-# Version:      1.0.161225
+# Version:      1.1.170305
 #==================================================
 
 #是否更新内核，不更新改0
@@ -70,7 +70,7 @@ EOF
 #配置SSH
 function SSHConfig()
 {
-	sed -i "s/^.?Port.*$/Port 8022/g" /etc/ssh/sshd_config
+	sed -i "s/^.*Port.*$/Port 8022/g" /etc/ssh/sshd_config
 	sed -i "s/^#LoginGraceTime/LoginGraceTime/g" /etc/ssh/sshd_config
 	sed -i "s/^#MaxAuthTries 6/MaxAuthTries 2/g" /etc/ssh/sshd_config
 	sed -i "s/^#PubkeyAuthentication/PubkeyAuthentication/g" /etc/ssh/sshd_config
