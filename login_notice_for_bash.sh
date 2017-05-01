@@ -1,17 +1,17 @@
 #!/bin/bash
 #==================================================
 # OS Passed:    CentOS6
-# Description:  bashµÇÂ¼Ê±×Ô¶¯·¢ËÍµÇÂ¼ÌáĞÑ
+# Description:  bashç™»å½•æ—¶è‡ªåŠ¨å‘é€ç™»å½•æé†’
 # Author:       kuretru < kuretru@gmail.com >
 # Github:       https://github.com/kuretru/Script-Collection
 # Version:      1.0.170501
 #==================================================
 
-#Server½´µ÷ÓÃÃÜÔ¿
+#Serveré…±è°ƒç”¨å¯†é’¥
 key=''
 
 user=$(whoami)
 hostname=$(hostname | sed 's/\./_/g')
 ip=$(grep 'Accepted' /var/log/secure | grep ${user} | tail -n 1 |  sed -nr 's/.*[^0-9](([0-9]+\.){3}[0-9]+).*/\1/p')
 
-wget -q --spider http://sc.ftqq.com/${key}.send?text="${hostname}µÇÂ¼ÌáĞÑ"\&desp="IPµØÖ·${ip}£¬ÓÃ»§Ãû${user}" &
+wget -q --spider http://sc.ftqq.com/${key}.send?text="${hostname}ç™»å½•æé†’"\&desp="IPåœ°å€${ip}ï¼Œç”¨æˆ·å${user}" &
