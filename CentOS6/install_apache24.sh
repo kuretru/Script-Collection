@@ -10,10 +10,10 @@
 #==================================================
 
 #OpenSSL下载地址
-opensslURL='openssl-1.0.2k.tar.gz'
+opensslURL='openssl-1.0.2l.tar.gz'
 
 #Apache2.4下载地址
-apacheURL='httpd-2.4.25.tar.gz'
+apacheURL='httpd-2.4.26.tar.gz'
 
 #安装ius源
 function InstallIus()
@@ -56,7 +56,7 @@ function UpdateOpenSSL()
 function Installmodssl()
 {
 	cd /usr/local/src/
-	wget "http://mirrors.cnnic.cn/apache/httpd/${apacheURL}"
+	wget "http://mirrors.tuna.tsinghua.edu.cn/apache/httpd/${apacheURL}"
 	tar -xzvf $apacheURL
 	cd ${apacheURL%.tar.gz}/modules/ssl
 	apxs -i -a -D HAVE_OPENSSL=1 -I/usr/local/openssl/include/openssl/ -L/usr/local/openssl/lib/ -c *.c -lcrypto -lssl -ldl
