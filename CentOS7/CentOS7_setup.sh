@@ -28,6 +28,8 @@ IPv6=$(wget -qO- -t1 -T2 ipv6.icanhazip.com)
 #更新软件包
 function SystemUpdate()
 {
+	yum clean all
+	yum makecache fast
 	if [ $UpdateKernel -eq 1 ]; then
 		yum -y update
 	else
@@ -38,8 +40,8 @@ function SystemUpdate()
 #安装基本软件包
 function InstallPackages()
 {
-	yum -y install vim wget curl tree lsof ntpdate postfix \
-epel-release net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ firewalld
+	yum -y install vim wget curl tree lsof postfix epel-release ntp \
+net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ firewalld
 	yum clean all
 }
 
@@ -47,21 +49,17 @@ epel-release net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ fire
 function SystemConfig()
 {
 	#修改主机名
-	echo "${HostName}" > /etc/hostname
+	hostname $HostName
 	#修改密码
 	echo $PassWord | passwd --stdin root
 	#关闭SELinux
 	sed -i "s/^SELINUX=.*$/SELINUX=disabled/g" /etc/selinux/config
 	setenforce 0
-	#配置i18n
-	sed -i "s/^LANG=.*$/LANG=\"en_US.UTF-8\"/g" /etc/sysconfig/i18n
-	sed -i "s/^SYSFONT=.*$/SYSFONT=\"latarcyrheb-sun16\"/g" /etc/sysconfig/i18n
 	#时间相关设置
 	timedatectl set-timezone Asia/Shanghai
-	ntpdate time.windows.com
 	systemctl enable crond.service
-	echo "0 1 * * * /usr/sbin/ntpdate time.windows.com" > /var/spool/cron/root
-	systemctl restart crond.service
+	systemctl enable ntpd.service
+	systemctl start ntpd.service
 	#登录文本
 	cat <<EOF > /etc/motd
 警告：你的IP已被记录，所有操作将会通告管理员！
