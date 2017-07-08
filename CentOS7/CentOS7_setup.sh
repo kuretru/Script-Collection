@@ -57,7 +57,7 @@ function SystemConfig()
 	sed -i "s/^LANG=.*$/LANG=\"en_US.UTF-8\"/g" /etc/sysconfig/i18n
 	sed -i "s/^SYSFONT=.*$/SYSFONT=\"latarcyrheb-sun16\"/g" /etc/sysconfig/i18n
 	#时间相关设置
-	/bin/cp -p /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+	timedatectl set-timezone Asia/Shanghai
 	ntpdate time.windows.com
 	systemctl enable crond.service
 	echo "0 1 * * * /usr/sbin/ntpdate time.windows.com" > /var/spool/cron/root
