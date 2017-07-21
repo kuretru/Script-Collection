@@ -40,7 +40,7 @@ function SystemUpdate()
 #安装基本软件包
 function InstallPackages()
 {
-	yum -y install vim wget curl tree lsof postfix epel-release ntp \
+	yum -y install vim wget curl tree lsof epel-release ntp \
 net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ firewalld
 	yum clean all
 }
@@ -140,7 +140,7 @@ cat <<EOF
 ########################################
 #
 # 呉真的一键服务器配置脚本，目前只适用于
-# CentOS6，从一个新的服务器自动初始化配置
+# CentOS7，从一个新的服务器自动初始化配置
 # https://blog.kuretru.com
 #
 ########################################
