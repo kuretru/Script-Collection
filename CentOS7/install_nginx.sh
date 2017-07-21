@@ -13,7 +13,7 @@
 opensslURL='openssl-1.0.2l.tar.gz'
 
 #Nginx1.10下载地址
-nginxURL='nginx-1.12.0.tar.gz'
+nginxURL='nginx-1.12.1.tar.gz'
 
 #安装nginx
 function InstallNginx()
