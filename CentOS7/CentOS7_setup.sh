@@ -40,7 +40,7 @@ function SystemUpdate()
 #安装基本软件包
 function InstallPackages()
 {
-	yum -y install vim wget curl tree lsof epel-release ntp \
+	yum -y install vim wget curl tree lsof epel-release ntp rsyslog \
 net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ firewalld
 	yum clean all
 }
