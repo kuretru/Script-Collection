@@ -49,7 +49,7 @@ net-snmp bind-utils xz mtr unzip crontabs git make gcc gcc-c++ firewalld
 function SystemConfig()
 {
 	#修改主机名
-	hostname $HostName
+	echo $HostName > /etc/hostname
 	#修改密码
 	echo $PassWord | passwd --stdin root
 	#关闭SELinux
