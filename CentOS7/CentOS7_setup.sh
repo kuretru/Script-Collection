@@ -125,7 +125,7 @@ function InstallSSlibev()
     "local_port":1080,
     "password":"${SSPassword}",
     "timeout":60,
-    "method":"aes-256-cfb"
+    "method":"chacha20-ietf-poly1305"
 }
 EOF
 	sed -i "s/^Group=nogroup/Group=nobody/g" /usr/lib/systemd/system/shadowsocks-libev.service
