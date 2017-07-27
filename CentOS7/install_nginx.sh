@@ -111,6 +111,8 @@ function CompileNginx()
 	ln -s /usr/local/src/${nginxURL%.tar.gz}/objs/nginx nginx
 	openssl dhparam -dsaparam -out /etc/nginx/dhparam.pem 4096
 	systemctl enable nginx.service
+	cd /usr/share/nginx/html
+	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/tz.php
 }
 
 #安装PHP7.1

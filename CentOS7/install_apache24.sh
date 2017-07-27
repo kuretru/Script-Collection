@@ -27,6 +27,8 @@ function InstallApache24()
 {
 	yum -y install httpd24u nghttp2 httpd24u-devel httpd24u-mod_ssl
 	systemctl enable httpd.service
+	cd /var/www/html
+	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/tz.php
 }
  
 #编译新版OpenSSL
