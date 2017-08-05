@@ -105,7 +105,7 @@ function iptablesConfig()
 	service iptables save
 	if [ ! -z $"IPv6" ]; then
 		yum -y install iptables-ipv6
-        ip6tables -P INPUT DROP
+        ip6tables -P INPUT ACCEPT
 		ip6tables -F
 		ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 		ip6tables -A INPUT -p icmpv6 -j ACCEPT

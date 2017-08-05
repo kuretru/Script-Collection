@@ -13,7 +13,7 @@
 opensslURL='openssl-1.0.2l.tar.gz'
 
 #Apache2.4下载地址
-apacheURL='httpd-2.4.25.tar.gz'
+apacheURL='httpd-2.4.27.tar.gz'
 
 #安装ius源
 function InstallIus()
