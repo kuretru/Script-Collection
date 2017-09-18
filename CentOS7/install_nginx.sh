@@ -4,16 +4,16 @@
 # Description:  呉真的服务器一键配置脚本安装nginx，并支持HTTP/2
 # Author:       kuretru < kuretru@gmail.com >
 # Github:       https://github.com/kuretru/Script-Collection
-# Version:      1.0.170708
+# Version:      1.1.170918
 # OpenSSL:		https://www.openssl.org/source/
 # Nginx:		http://nginx.org/en/download.html
 #==================================================
 
 #OpenSSL下载地址
-opensslURL='openssl-1.0.2l.tar.gz'
+opensslURL='openssl-1.0.2k.tar.gz'
 
-#Nginx1.10下载地址
-nginxURL='nginx-1.12.1.tar.gz'
+#Nginx1.13下载地址
+nginxURL='nginx-1.13.5.tar.gz'
 
 #安装nginx
 function InstallNginx()
@@ -22,7 +22,7 @@ function InstallNginx()
 	wget http://nginx.org/keys/nginx_signing.key
 	rpm --import /etc/pki/rpm-gpg/nginx_signing.key
 	cd /etc/yum.repos.d/
-	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/nginx.repo
+	wget https://raw.githubusercontent.com/kuretru/Script-Collection/master/files/nginx.repo.centos7 -O nginx.repo
 	sed -i "s/^gpgcheck=0/gpgcheck=1/g" nginx.repo
 	yum -y install nginx
 }
